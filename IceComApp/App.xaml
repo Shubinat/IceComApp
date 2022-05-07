@@ -1,0 +1,120 @@
+﻿<Application x:Class="IceComApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IceComApp"
+             StartupUri="/Windows/MainWindow.xaml">
+    <Application.Resources>
+
+        <SolidColorBrush Color="#ec1c24" x:Key="ColorMain"/>
+        <SolidColorBrush Color="#FFF03D44" x:Key="ColorMainAccent"/>
+        <SolidColorBrush Color="#FFEE696E" x:Key="ColorMainActive"/>
+        <SolidColorBrush Color="#FFAE3035" x:Key="ColorMainUnactive"/>
+        <SolidColorBrush Color="White" x:Key="ColorSecond"/>
+        <SolidColorBrush Color="#FFEBEBEB" x:Key="ColorSecondControl"/>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#ec1c24"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="Transparent">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF03D44" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FFEE696E" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FFAE3035" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="{StaticResource ColorSecondControl}"/>
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Candara" />
+        </Style>
+
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Candara" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TBlockHeader">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="{StaticResource ColorMain}" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Candara" />
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="{StaticResource ColorSecondControl}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="Candara" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True" CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="IceComApp.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IceComApp.Windows"
+        mc:Ignorable="d"
+        Title="IceCom - Система учета проукции" MinHeight="560" MinWidth="860" Height="560" Width="860">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="{StaticResource ColorMain}" Grid.Row="1" Margin="5 0"/>
+        <Grid Background="{StaticResource ColorMain}" Grid.Row="3" Margin="5 0"/>
+        <Image HorizontalAlignment="Left" Margin="5 0" Source="/Assets/logo.png"/>
+
+
+        <Frame Grid.Row="2" NavigationUIVisibility="Hidden" x:Name="FrameMain"/>
+    </Grid>
+</Window>
