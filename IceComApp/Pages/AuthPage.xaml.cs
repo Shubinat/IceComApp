@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IceComApp.Entities;
+using IceComApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +29,24 @@ namespace IceComApp.Pages
 
         private void BtnLogIn_Click(object sender, RoutedEventArgs e)
         {
-
+            if(!string.IsNullOrWhiteSpace(TBoxLogin.Text) && !string.IsNullOrWhiteSpace(PBoxPassword.Password))
+            {
+                if (App.Context.Users.ToList().FirstOrDefault(x => x.Login == TBoxLogin.Text && PBoxPassword.Password == x.Password) is User user)
+                {
+                    Properties.Settings.Default.UserId = user.ID;
+                    NavigationService.Navigate(new MenuPage());
+                    if(ChBoxRememberMe.IsChecked == true)
+                        Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Message.ShowError("Невернй логин или пароль.");
+                }
+            }
+            else
+            {
+                Message.ShowError("Заполните оба поля.");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IceComApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace IceComApp
     /// </summary>
     public partial class App : Application
     {
+        public static Entities.IceComBaseEntities Context { get; } = new Entities.IceComBaseEntities();
+        public static Entities.User AuthUser => Context.Users.ToList().FirstOrDefault(x => x.ID == Settings.Default.UserId);
     }
 }

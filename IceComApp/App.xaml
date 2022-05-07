@@ -116,5 +116,35 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+
+
+        <Style TargetType="{x:Type Button}" x:Key="BtnNav">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent"
+                                BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}" 
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="1">
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                               TextBlock.Foreground="Red" TextBlock.FontSize="16"
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#19FF0000" />
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#33FF0000" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

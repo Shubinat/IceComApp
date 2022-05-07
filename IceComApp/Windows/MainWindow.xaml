@@ -17,9 +17,17 @@
 
         <Grid Background="{StaticResource ColorMain}" Grid.Row="1" Margin="5 0"/>
         <Grid Background="{StaticResource ColorMain}" Grid.Row="3" Margin="5 0"/>
-        <Image HorizontalAlignment="Left" Margin="5 0" Source="/Assets/logo.png"/>
+        <StackPanel Orientation="Horizontal">
 
+            <Image HorizontalAlignment="Left" Source="/Assets/logo.png"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Left" Style="{StaticResource BtnNav}" Width="75" x:Name="BtnNavBack" IsCancel="True" Margin="2.5 0" Grid.Row="4" Click="BtnNavBack_Click">
+            <TextBlock Text="&#xEC52;" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="{StaticResource ColorMain}" Margin="0 5 0 0"/>
+        </Button>
+        <Button HorizontalAlignment="Left" Style="{StaticResource BtnNav}" Width="75" x:Name="BtnNavExit" IsCancel="True" Margin="2.5 0" Grid.Row="4" Click="BtnNavExit_Click">
+            <TextBlock Text="&#xEC52;" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="{StaticResource ColorMain}" Margin="0 5 0 0"/>
+        </Button>
 
-        <Frame Grid.Row="2" NavigationUIVisibility="Hidden" x:Name="FrameMain"/>
+        <Frame Grid.Row="2" NavigationUIVisibility="Hidden" x:Name="FrameMain" ContentRendered="FrameMain_ContentRendered" Margin="5 0"/>
     </Grid>
 </Window>

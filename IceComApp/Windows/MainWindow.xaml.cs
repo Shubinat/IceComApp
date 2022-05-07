@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IceComApp.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,42 @@ namespace IceComApp.Windows
         public MainWindow()
         {
             InitializeComponent();
-            FrameMain.Navigate(new Pages.AuthPage());
+            if(App.AuthUser == null)
+                FrameMain.Navigate(new Pages.AuthPage());
+            else
+                FrameMain.Navigate(new Pages.MenuPage());
+        }
+
+        private void BtnNavBack_Click(object sender, RoutedEventArgs e)
+        {
+            if(FrameMain.CanGoBack)
+                FrameMain.GoBack();
+        }
+
+        private void FrameMain_ContentRendered(object sender, EventArgs e)
+        {
+            if (FrameMain.Content is AuthPage || FrameMain.Content is MenuPage)
+            {
+                BtnNavBack.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                BtnNavBack.Visibility = Visibility.Visible;
+            }
+
+            if (FrameMain.Content is MenuPage)
+            {
+                BtnNavExit.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnNavExit.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BtnNavExit_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Navigate(new AuthPage());
         }
     }
 }
