@@ -29,6 +29,7 @@ namespace IceComApp.Entities
         public string Patronymic { get; set; }
         public string Telephone { get; set; }
         public int RoleID { get; set; }
+        public byte[] Picture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSale> ProductSales { get; set; }

@@ -55,11 +55,31 @@ namespace IceComApp.Windows
             {
                 BtnNavExit.Visibility = Visibility.Collapsed;
             }
+
+            if (FrameMain.Content is AuthPage || FrameMain.Content is MyProfilePage)
+            {
+                BtnMyProfile.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                BtnMyProfile.Visibility = Visibility.Visible;
+            }
+
+
+            BtnMyProfile.DataContext = null;
+            BtnMyProfile.DataContext = App.AuthUser;
         }
 
         private void BtnNavExit_Click(object sender, RoutedEventArgs e)
         {
             FrameMain.Navigate(new AuthPage());
+            Properties.Settings.Default.UserId = 0;
+            Properties.Settings.Default.Save();
+        }
+
+        private void BtnMyProfile_Click(object sender, RoutedEventArgs e)
+        {
+            FrameMain.Navigate(new MyProfilePage(App.AuthUser));
         }
     }
 }

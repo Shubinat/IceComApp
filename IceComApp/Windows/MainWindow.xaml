@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IceComApp.Windows"
         mc:Ignorable="d"
-        Title="IceCom - Система учета проукции" MinHeight="560" MinWidth="860" Height="560" Width="860">
+        Title="IceCom - Система учета продукции" MinHeight="560" MinWidth="860" Height="560" Width="860">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -29,5 +29,23 @@
         </Button>
 
         <Frame Grid.Row="2" NavigationUIVisibility="Hidden" x:Name="FrameMain" ContentRendered="FrameMain_ContentRendered" Margin="5 0"/>
+
+        <Button HorizontalAlignment="Right" Style="{StaticResource BtnNav}" x:Name="BtnMyProfile" Margin="2.5 0" Padding="0" Click="BtnMyProfile_Click">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="{Binding FullName}" Margin="5" VerticalAlignment="Center" Style="{StaticResource TBlockHeader}" FontSize="16" FontWeight="DemiBold"/>
+                <Image Height="35" Width="35" Margin="5" Stretch="UniformToFill">
+                        <Image.Source>
+                            <Binding Path="Picture">
+                                <Binding.TargetNullValue>
+                                    <BitmapImage UriSource="/Assets/no_image_profile.jpg"/>
+                                </Binding.TargetNullValue>
+                            </Binding>
+                        </Image.Source>
+                        <Image.Clip>
+                            <RectangleGeometry RadiusX="30" RadiusY="30" Rect="0,0,35,35"/>
+                        </Image.Clip>
+                    </Image>
+                </StackPanel>
+        </Button>
     </Grid>
 </Window>

@@ -23,6 +23,40 @@ namespace IceComApp.Pages
         public MenuPage()
         {
             InitializeComponent();
+            
+            BtnProducts.Visibility = Visibility.Collapsed;
+            BtnShops.Visibility = Visibility.Collapsed;
+            BtnShopSales.Visibility = Visibility.Collapsed;
+
+            switch (App.AuthUser.RoleID)
+            {
+                case 1:
+                    BtnProducts.Visibility = Visibility.Visible;
+                    BtnShops.Visibility = Visibility.Visible;
+                    BtnShopSales.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void BtnProducts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnShops_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnShopSales_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿<Page x:Class="IceComApp.Pages.MyProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IceComApp.Pages"
+      xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Редактирование профиля">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Логин:" Margin="5"/>
+                <TextBox x:Name="TBoxLogin" Width="170"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Пароль:" Margin="5"/>
+                <TextBox x:Name="TBoxPassword" Width="170"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Фамилия:" Margin="5"/>
+                <TextBox x:Name="TBoxSurname" Width="170"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Имя:" Margin="5"/>
+                <TextBox x:Name="TBoxName" Width="170"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Отчество:" Margin="5"/>
+                <TextBox x:Name="TBoxPatronymic" Width="170"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Номер телефона:" Margin="5"/>
+                <Grid>
+                    <TextBox Width="170" IsReadOnly="True" Focusable="False"/>
+                    <WindowsFormsHost FontSize="18" Width="150" Margin="10 5" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <forms:MaskedTextBox Mask="+7 (000) 000-00-00" BorderStyle="None" BeepOnError="True" x:Name="TBoxTelephone" Culture="ru-RU" BackColor="#FFEBEBEB" Font="Candara,11" >
+                        </forms:MaskedTextBox>
+                    </WindowsFormsHost>
+                </Grid>
+            </StackPanel>
+                
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Фото профиля" Margin="5" HorizontalAlignment="Left"/>
+            <Image Height="200" Width="200" Margin="5" x:Name="ImgProfilePhoto" Stretch="UniformToFill">
+                <Image.Source>
+                    <Binding>
+                        <Binding.TargetNullValue>
+                            <BitmapImage UriSource="/Assets/no_image_profile.jpg"/>
+                        </Binding.TargetNullValue>
+                    </Binding>
+                </Image.Source>
+                <Image.Clip>
+                    <RectangleGeometry RadiusX="200" RadiusY="200" Rect="0,0,200,200"/>
+                </Image.Clip>
+            </Image>
+            <Button Content="Изменить" Margin="0 10" x:Name="BtnSelectPhoto" Click="BtnSelectPhoto_Click" />
+        </StackPanel>
+
+        <Button Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" x:Name="BtnSave" Click="BtnSave_Click"/>
+
+    </Grid>
+</Page>

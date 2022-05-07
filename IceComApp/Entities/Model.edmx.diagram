@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dd722bdb4bb04ce7ab0cdda8405ca461" Name="Diagram1">
-        <EntityTypeShape EntityType="IceComBaseModel.Company" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.Product" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductHistory" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductSale" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductType" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.Role" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.Shop" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.ShopSale" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.User" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IceComBaseModel.Warehouse" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_Company1" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_Product_ProductType" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ProductHistory_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ProductHistory_Warehouse" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_User" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_User_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Shop" ManuallyRouted="false" />
-        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IceComBaseModel.Company" Width="1.5" PointX="6" PointY="8.875" />
+        <EntityTypeShape EntityType="IceComBaseModel.Product" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductHistory" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductSale" Width="1.5" PointX="8.25" PointY="4.625" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductType" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="IceComBaseModel.Role" Width="1.5" PointX="3.75" PointY="12.625" />
+        <EntityTypeShape EntityType="IceComBaseModel.Shop" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="IceComBaseModel.ShopSale" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="IceComBaseModel.User" Width="1.5" PointX="6" PointY="11.75" />
+        <EntityTypeShape EntityType="IceComBaseModel.Warehouse" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_Company1" />
+        <AssociationConnector Association="IceComBaseModel.FK_Product_ProductType" />
+        <AssociationConnector Association="IceComBaseModel.FK_ProductHistory_Product" />
+        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_Product" />
+        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Product" />
+        <AssociationConnector Association="IceComBaseModel.FK_ProductHistory_Warehouse" />
+        <AssociationConnector Association="IceComBaseModel.FK_ProductSale_User" />
+        <AssociationConnector Association="IceComBaseModel.FK_User_Role" />
+        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Shop" />
+        <AssociationConnector Association="IceComBaseModel.FK_ShopSale_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
