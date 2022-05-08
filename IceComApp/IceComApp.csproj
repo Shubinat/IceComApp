@@ -108,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ProductSalesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ShopEditorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +207,9 @@
     </Compile>
     <Compile Include="Pages\ProductPurchasesPage.xaml.cs">
       <DependentUpon>ProductPurchasesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductSalesPage.xaml.cs">
+      <DependentUpon>ProductSalesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ShopEditorPage.xaml.cs">
       <DependentUpon>ShopEditorPage.xaml</DependentUpon>

@@ -1,4 +1,4 @@
-﻿<Page x:Class="IceComApp.Pages.ProductPurchasesPage"
+﻿<Page x:Class="IceComApp.Pages.ProductSalesPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:IceComApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="История закупок" Loaded="Page_Loaded">
+      Title="История продаж" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,31 +14,31 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Text="Поиск:" Margin="5" VerticalAlignment="Center"/>
             <TextBox Width="170" x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="Фильтрация с:" Margin="5" VerticalAlignment="Center"/>
-            <DatePicker Width="170"  VerticalAlignment="Center"  x:Name="DPickerStart" SelectedDateChanged="DPickerStart_SelectedDateChanged" />
+            <DatePicker Width="170"  VerticalAlignment="Center"  x:Name="DPickerStart" SelectedDateChanged="DPickerStart_SelectedDateChanged"/>
             <TextBlock Text="по" Margin="5" VerticalAlignment="Center"/>
             <DatePicker Width="170"  VerticalAlignment="Center"  x:Name="DPickerEnd" SelectedDateChanged="DPickerEnd_SelectedDateChanged"/>
         </StackPanel>
 
-        <DataGrid x:Name="DGridProductsPurchases" Grid.Row="1" >
+        <DataGrid x:Name="DGridProductsSales" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Менеджер" Binding="{Binding User.FullName}" Width="*"/>
-                <DataGridTextColumn Header="Склад" Binding="{Binding Warehouse.Name}" Width="*"/>
+                <DataGridTextColumn Header="Магазин" Binding="{Binding Shop.Name}" Width="*"/>
                 <DataGridTextColumn Header="Дата" Binding="{Binding DateTime, StringFormat=d MMMM yyyy}" Width="*"/>
                 <DataGridTextColumn Header="Время" Binding="{Binding DateTime, StringFormat=HH:mm}" Width="*"/>
                 <DataGridTextColumn Header="Продукция" Binding="{Binding Product.Name}" Width="*"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Product.Price}" Width="*"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" Width="*"/>
             </DataGrid.Columns>
-    </DataGrid>
+        </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" >
-            <Button Content="Новая закупка" x:Name="BtnAddPurchase" Click="BtnAddPurchase_Click"/>
+            <Button Content="Новая продажа" x:Name="BtnAddSale" Click="BtnAddSale_Click"/>
             <Button Content="Сформировать отчет" x:Name="BtnReport" Click="BtnReport_Click"/>
         </StackPanel>
     </Grid>

@@ -26,17 +26,17 @@ namespace IceComApp.Pages
         public ProductPurchasesPage()
         {
             InitializeComponent();
-            List<Entities.ProductType> products = App.Context.ProductTypes.ToList();
-            products.Insert(0, new Entities.ProductType { Name = "Вся продукция" });
-            CBoxProductTypes.ItemsSource = products;
-            CBoxProductTypes.SelectedIndex = 0;
         }
 
         private void UpdateGrid()
         {
             List<Entities.ProductPurchase> productPurchases = App.Context.ProductPurchases.ToList();
-            if (CBoxProductTypes.SelectedIndex != 0)
-                productPurchases = productPurchases.Where(x => x.Product.ProductType == CBoxProductTypes.SelectedItem).ToList();
+
+            if (DPickerStart.SelectedDate != null)
+                productPurchases = productPurchases.Where(x => x.DateTime.Date >= DPickerStart.SelectedDate.Value.Date).ToList();
+
+            if (DPickerEnd.SelectedDate != null)
+                productPurchases = productPurchases.Where(x => x.DateTime.Date <= DPickerEnd.SelectedDate.Value.Date).ToList();
 
             if (!string.IsNullOrWhiteSpace(TBoxSearch.Text))
                 productPurchases = productPurchases.Where(x => x.User.FullName.ToLower().Contains(TBoxSearch.Text.ToLower()) ||
@@ -46,11 +46,6 @@ namespace IceComApp.Pages
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateGrid();
-        }
-
-        private void CBoxProductTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateGrid();
         }
@@ -80,6 +75,16 @@ namespace IceComApp.Pages
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateGrid();
+        }
+
+        private void DPickerStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateGrid();
+        }
+
+        private void DPickerEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateGrid();
         }

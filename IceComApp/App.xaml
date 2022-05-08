@@ -499,5 +499,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+
+        <Style TargetType="DatePicker">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Candara" />
+            
+        </Style>
     </Application.Resources>
 </Application>
