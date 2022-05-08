@@ -107,6 +107,7 @@
     <Compile Include="Entities\Company.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CompanyPartial.cs" />
     <Compile Include="Entities\CompanyType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -144,6 +145,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ShopSale.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Unit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\User.cs">
@@ -219,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\no_image_profile.jpg" />
+    <Resource Include="Assets\no_picture.png" />
     <Content Include="Entities\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>

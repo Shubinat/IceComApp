@@ -32,6 +32,8 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="CompanyID" Type="int" Nullable="false" />
           <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitID" Type="int" Nullable="false" />
           <Property Name="Picture" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="ProductHistory">
@@ -88,6 +90,14 @@
           <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -142,6 +152,18 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UnitID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -251,6 +273,7 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopSale" EntityType="Self.ShopSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Company_CompanyType" Association="Self.FK_Company_CompanyType">
@@ -263,6 +286,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
             <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Unit" Association="Self.FK_Product_Unit">
+            <End Role="Unit" EntitySet="Unit" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductHistory_Product" Association="Self.FK_ProductHistory_Product">
@@ -312,6 +339,7 @@
           <EntitySet Name="Roles" EntityType="IceComBaseModel.Role" />
           <EntitySet Name="Shops" EntityType="IceComBaseModel.Shop" />
           <EntitySet Name="ShopSales" EntityType="IceComBaseModel.ShopSale" />
+          <EntitySet Name="Units" EntityType="IceComBaseModel.Unit" />
           <EntitySet Name="Users" EntityType="IceComBaseModel.User" />
           <EntitySet Name="Warehouses" EntityType="IceComBaseModel.Warehouse" />
           <AssociationSet Name="FK_Company_CompanyType" Association="IceComBaseModel.FK_Company_CompanyType">
@@ -324,6 +352,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="IceComBaseModel.FK_Product_ProductType">
             <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Unit" Association="IceComBaseModel.FK_Product_Unit">
+            <End Role="Unit" EntitySet="Units" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductHistory_Product" Association="IceComBaseModel.FK_ProductHistory_Product">
@@ -389,9 +421,12 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CompanyID" Type="Int32" Nullable="false" />
           <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="UnitID" Type="Int32" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Company" Relationship="IceComBaseModel.FK_Product_Company" FromRole="Product" ToRole="Company" />
           <NavigationProperty Name="ProductType" Relationship="IceComBaseModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Unit" Relationship="IceComBaseModel.FK_Product_Unit" FromRole="Product" ToRole="Unit" />
           <NavigationProperty Name="ProductHistories" Relationship="IceComBaseModel.FK_ProductHistory_Product" FromRole="Product" ToRole="ProductHistory" />
           <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
           <NavigationProperty Name="ShopSales" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="Product" ToRole="ShopSale" />
@@ -460,6 +495,15 @@
           <NavigationProperty Name="Shop" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="ShopSale" ToRole="Shop" />
           <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="ShopSale" ToRole="User" />
         </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="IceComBaseModel.FK_Product_Unit" FromRole="Unit" ToRole="Product" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -518,6 +562,18 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Unit">
+          <End Type="IceComBaseModel.Unit" Role="Unit" Multiplicity="1" />
+          <End Type="IceComBaseModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UnitID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -647,6 +703,8 @@
             <EntityTypeMapping TypeName="IceComBaseModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -711,6 +769,15 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="IceComBaseModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

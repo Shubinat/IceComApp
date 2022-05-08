@@ -34,6 +34,7 @@ namespace IceComApp.Entities
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
         public virtual DbSet<ShopSale> ShopSales { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
     }

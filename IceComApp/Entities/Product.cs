@@ -27,10 +27,13 @@ namespace IceComApp.Entities
         public string Description { get; set; }
         public int CompanyID { get; set; }
         public int ProductTypeID { get; set; }
+        public decimal Price { get; set; }
+        public int UnitID { get; set; }
         public byte[] Picture { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual ProductType ProductType { get; set; }
+        public virtual Unit Unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductHistory> ProductHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

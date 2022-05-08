@@ -46,7 +46,7 @@ namespace IceComApp.Pages
 
         private void BtnProducts_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ProductListPage());
         }
 
         private void BtnShops_Click(object sender, RoutedEventArgs e)
@@ -56,7 +56,7 @@ namespace IceComApp.Pages
 
         private void BtnShopSales_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

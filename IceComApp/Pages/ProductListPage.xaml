@@ -6,9 +6,87 @@
       xmlns:local="clr-namespace:IceComApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Список продукции">
+      Title="Список продукции" Loaded="Page_Loaded">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Поиск:" Margin="5" VerticalAlignment="Center"/>
+                <TextBox Width="150" x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2">
+                <TextBlock Text="Сортировка:" Margin="5" VerticalAlignment="Center"/>
+                <ComboBox Width="150" Style="{StaticResource CuteComboBox}" VerticalAlignment="Center" x:Name="CBoxSort" SelectionChanged="CBoxSort_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
+                <TextBlock Text="Тип продукта:" Margin="5" VerticalAlignment="Center"/>
+                <ComboBox Width="150" Style="{StaticResource CuteComboBox}" VerticalAlignment="Center" x:Name="CBoxProductTypes" SelectionChanged="CBoxProductTypes_SelectionChanged" DisplayMemberPath="Name"/>
+            </StackPanel>
+        </Grid>
+
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Background="{StaticResource ColorSecondControl}" Margin="5" x:Name="LViewProducts" SelectionChanged="LViewProducts_SelectionChanged" SelectionMode="Single">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="White" CornerRadius="15" Width="400">
+                        <Border.ToolTip>
+                            <ToolTip Width="250">
+                                <TextBlock Text="{Binding Description, TargetNullValue=Информация о продукции отсутствует.}" TextWrapping="Wrap"/>
+                            </ToolTip>
+                        </Border.ToolTip>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Height="90" Width="90" Margin="5" Stretch="UniformToFill">
+                                <Image.Source>
+                                    <Binding Path="Picture">
+                                        <Binding.TargetNullValue>
+                                            <BitmapImage UriSource="/Assets/no_picture.png"/>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                                <Image.Clip>
+                                    <RectangleGeometry RadiusX="90" RadiusY="90" Rect="0,0,90,90"/>
+                                </Image.Clip>
+                            </Image>
+                        <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource TBlockHeader}" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+                                <TextBlock Margin="5 -5 0 0" Foreground="Gray" TextWrapping="Wrap">
+                                    <Run Text="{Binding Price}"/>
+                                    <Run Text="₽ за"/>
+                                    <Run Text="{Binding Unit.ShortName}"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Company.FullName, StringFormat='от компании {0}'}"  Margin="5 0" Foreground="Gray" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="Удалить" x:Name="BtnDelete" Width="150" IsEnabled="False" Click="BtnDelete_Click"/>
+            <Button Content="Редактировать" x:Name="BtnEdit" Width="150" IsEnabled="False" Click="BtnEdit_Click"/>
+            <Button Content="Добавить" x:Name="BtnAdd" Width="150" Click="BtnAdd_Click"/>
+
+        </StackPanel>
     </Grid>
 </Page>
