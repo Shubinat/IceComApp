@@ -23,7 +23,7 @@ namespace IceComApp.Pages
     public partial class ShopEditorPage : Page
     {
         private Shop _shop;
-        public ShopEditorPage(Shop shop)
+        public ShopEditorPage(Shop shop = null)
         {
             InitializeComponent();
             _shop = shop;

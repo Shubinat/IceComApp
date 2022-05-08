@@ -26,7 +26,7 @@ namespace IceComApp.Pages
     {
         private User _user;
         private byte[] _photo;
-        public MyProfilePage(User user)
+        public MyProfilePage(User user = null)
         {
             InitializeComponent();
             _user = user;
@@ -40,7 +40,8 @@ namespace IceComApp.Pages
                 TBoxName.Text = user.Name;
                 TBoxPatronymic.Text = user.Patronymic;
                 TBoxTelephone.Text = user.Telephone;
-                Title = "Редактирование профиля";
+                Title = App.AuthUser == _user ? "Редактирование профиля" : "Редактирование пользователя";
+                TBlockTitle.Text = App.AuthUser == _user ? "Редактирование профиля" : "Редактирование пользователя";
             }
         }
 

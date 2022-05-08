@@ -13,7 +13,9 @@
             <TextBlock Style="{StaticResource TBlockHeader}" Text="Выбор действия"/>
             <Button Content="Список продукции" x:Name="BtnProducts" Click="BtnProducts_Click"/>
             <Button Content="Список магазинов" x:Name="BtnShops" Click="BtnShops_Click"/>
-            <Button Content="Список продаж" x:Name="BtnShopSales" Click="BtnShopSales_Click"/>
+            <Button Content="Список продаж" x:Name="BtnProductSales" Click="BtnShopSales_Click"/>
+            <Button Content="Список закупок" x:Name="BtnProductProductPurchases" Click="BtnProductSales_Click"/>
+            <Button Content="Список производителей" x:Name="BtnCompanies" Click="BtnCompanies_Click"/>
         </StackPanel>
     </Grid>
 </Page>

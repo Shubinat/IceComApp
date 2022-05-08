@@ -26,16 +26,21 @@ namespace IceComApp.Pages
             
             BtnProducts.Visibility = Visibility.Collapsed;
             BtnShops.Visibility = Visibility.Collapsed;
-            BtnShopSales.Visibility = Visibility.Collapsed;
+            BtnProductSales.Visibility = Visibility.Collapsed;
+            BtnProductProductPurchases.Visibility = Visibility.Collapsed;
+            BtnCompanies.Visibility = Visibility.Collapsed;
 
             switch (App.AuthUser.RoleID)
             {
                 case 1:
                     BtnProducts.Visibility = Visibility.Visible;
                     BtnShops.Visibility = Visibility.Visible;
-                    BtnShopSales.Visibility = Visibility.Visible;
+                    BtnProductSales.Visibility = Visibility.Visible;
                     break;
                 case 2:
+                    BtnProducts.Visibility = Visibility.Visible;
+                    BtnProductProductPurchases.Visibility= Visibility.Visible;
+                    BtnCompanies.Visibility= Visibility.Visible;
                     break;
                 case 3:
                     break;
@@ -57,6 +62,16 @@ namespace IceComApp.Pages
         private void BtnShopSales_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void BtnProductSales_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCompanies_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

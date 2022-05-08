@@ -17,7 +17,7 @@ namespace IceComApp.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shop()
         {
-            this.ShopSales = new HashSet<ShopSale>();
+            this.ProductSales = new HashSet<ProductSale>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace IceComApp.Entities
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShopSale> ShopSales { get; set; }
+        public virtual ICollection<ProductSale> ProductSales { get; set; }
     }
 }

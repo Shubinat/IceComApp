@@ -29,11 +29,11 @@ namespace IceComApp.Entities
         public virtual DbSet<CompanyType> CompanyTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductHistory> ProductHistories { get; set; }
+        public virtual DbSet<ProductPurchase> ProductPurchases { get; set; }
         public virtual DbSet<ProductSale> ProductSales { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Shop> Shops { get; set; }
-        public virtual DbSet<ShopSale> ShopSales { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }

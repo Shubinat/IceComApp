@@ -44,16 +44,27 @@
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPurchase">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSale">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
@@ -78,17 +89,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="INN" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="ShopSale">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Amount" Type="float" Nullable="false" />
-          <Property Name="ShopID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -193,60 +193,60 @@
         </Association>
         <Association Name="FK_ProductSale_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
+          <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ProductSale">
+            <Dependent Role="ProductPurchase">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductSale_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
+          <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ProductSale">
+            <Dependent Role="ProductPurchase">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopSale_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ShopSale" Type="Self.ShopSale" Multiplicity="*" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ShopSale">
+            <Dependent Role="ProductSale">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopSale_Shop">
           <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="ShopSale" Type="Self.ShopSale" Multiplicity="*" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ShopSale">
+            <Dependent Role="ProductSale">
               <PropertyRef Name="ShopID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopSale_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="ShopSale" Type="Self.ShopSale" Multiplicity="*" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ShopSale">
+            <Dependent Role="ProductSale">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -268,11 +268,11 @@
           <EntitySet Name="CompanyType" EntityType="Self.CompanyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductHistory" EntityType="Self.ProductHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPurchase" EntityType="Self.ProductPurchase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSale" EntityType="Self.ProductSale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ShopSale" EntityType="Self.ShopSale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
@@ -302,23 +302,23 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_Product" Association="Self.FK_ProductSale_Product">
             <End Role="Product" EntitySet="Product" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchase" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_User" Association="Self.FK_ProductSale_User">
             <End Role="User" EntitySet="User" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchase" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_Product" Association="Self.FK_ShopSale_Product">
             <End Role="Product" EntitySet="Product" />
-            <End Role="ShopSale" EntitySet="ShopSale" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_Shop" Association="Self.FK_ShopSale_Shop">
             <End Role="Shop" EntitySet="Shop" />
-            <End Role="ShopSale" EntitySet="ShopSale" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_User" Association="Self.FK_ShopSale_User">
             <End Role="User" EntitySet="User" />
-            <End Role="ShopSale" EntitySet="ShopSale" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -334,11 +334,11 @@
           <EntitySet Name="CompanyTypes" EntityType="IceComBaseModel.CompanyType" />
           <EntitySet Name="Products" EntityType="IceComBaseModel.Product" />
           <EntitySet Name="ProductHistories" EntityType="IceComBaseModel.ProductHistory" />
+          <EntitySet Name="ProductPurchases" EntityType="IceComBaseModel.ProductPurchase" />
           <EntitySet Name="ProductSales" EntityType="IceComBaseModel.ProductSale" />
           <EntitySet Name="ProductTypes" EntityType="IceComBaseModel.ProductType" />
           <EntitySet Name="Roles" EntityType="IceComBaseModel.Role" />
           <EntitySet Name="Shops" EntityType="IceComBaseModel.Shop" />
-          <EntitySet Name="ShopSales" EntityType="IceComBaseModel.ShopSale" />
           <EntitySet Name="Units" EntityType="IceComBaseModel.Unit" />
           <EntitySet Name="Users" EntityType="IceComBaseModel.User" />
           <EntitySet Name="Warehouses" EntityType="IceComBaseModel.Warehouse" />
@@ -364,11 +364,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_Product" Association="IceComBaseModel.FK_ProductSale_Product">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ProductSale" EntitySet="ProductSales" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchases" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_Product" Association="IceComBaseModel.FK_ShopSale_Product">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ShopSale" EntitySet="ShopSales" />
+            <End Role="ProductSale" EntitySet="ProductSales" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductHistory_Warehouse" Association="IceComBaseModel.FK_ProductHistory_Warehouse">
             <End Role="Warehouse" EntitySet="Warehouses" />
@@ -376,19 +376,19 @@
           </AssociationSet>
           <AssociationSet Name="FK_ProductSale_User" Association="IceComBaseModel.FK_ProductSale_User">
             <End Role="User" EntitySet="Users" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopSale_Shop" Association="IceComBaseModel.FK_ShopSale_Shop">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="ProductSale" EntitySet="ProductSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShopSale_User" Association="IceComBaseModel.FK_ShopSale_User">
+            <End Role="User" EntitySet="Users" />
             <End Role="ProductSale" EntitySet="ProductSales" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="IceComBaseModel.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShopSale_Shop" Association="IceComBaseModel.FK_ShopSale_Shop">
-            <End Role="Shop" EntitySet="Shops" />
-            <End Role="ShopSale" EntitySet="ShopSales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShopSale_User" Association="IceComBaseModel.FK_ShopSale_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="ShopSale" EntitySet="ShopSales" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -428,8 +428,8 @@
           <NavigationProperty Name="ProductType" Relationship="IceComBaseModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="Unit" Relationship="IceComBaseModel.FK_Product_Unit" FromRole="Product" ToRole="Unit" />
           <NavigationProperty Name="ProductHistories" Relationship="IceComBaseModel.FK_ProductHistory_Product" FromRole="Product" ToRole="ProductHistory" />
-          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
-          <NavigationProperty Name="ShopSales" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="Product" ToRole="ShopSale" />
+          <NavigationProperty Name="ProductPurchases" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="Product" ToRole="ProductPurchase" />
+          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="Product" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="ProductHistory">
           <Key>
@@ -439,21 +439,35 @@
           <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ProductHistory_Product" FromRole="ProductHistory" ToRole="Product" />
           <NavigationProperty Name="Warehouse" Relationship="IceComBaseModel.FK_ProductHistory_Warehouse" FromRole="ProductHistory" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="ProductPurchase">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="ProductPurchase" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ProductSale_User" FromRole="ProductPurchase" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductSale">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="ProductSale" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ProductSale_User" FromRole="ProductSale" ToRole="User" />
+          <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="ProductSale" ToRole="Product" />
+          <NavigationProperty Name="Shop" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="ProductSale" ToRole="Shop" />
+          <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="ProductSale" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -479,21 +493,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="INN" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ShopSales" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="Shop" ToRole="ShopSale" />
-        </EntityType>
-        <EntityType Name="ShopSale">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="ShopID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="ShopSale" ToRole="Product" />
-          <NavigationProperty Name="Shop" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="ShopSale" ToRole="Shop" />
-          <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="ShopSale" ToRole="User" />
+          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="Shop" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -517,9 +517,9 @@
           <Property Name="Telephone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ProductSale_User" FromRole="User" ToRole="ProductSale" />
+          <NavigationProperty Name="ProductPurchases" Relationship="IceComBaseModel.FK_ProductSale_User" FromRole="User" ToRole="ProductPurchase" />
+          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="User" ToRole="ProductSale" />
           <NavigationProperty Name="Role" Relationship="IceComBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="ShopSales" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="User" ToRole="ShopSale" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -591,24 +591,24 @@
         </Association>
         <Association Name="FK_ProductSale_Product">
           <End Type="IceComBaseModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="IceComBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
+          <End Type="IceComBaseModel.ProductPurchase" Role="ProductPurchase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ProductSale">
+            <Dependent Role="ProductPurchase">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShopSale_Product">
           <End Type="IceComBaseModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="IceComBaseModel.ShopSale" Role="ShopSale" Multiplicity="*" />
+          <End Type="IceComBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ShopSale">
+            <Dependent Role="ProductSale">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
@@ -626,6 +626,30 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductSale_User">
+          <End Type="IceComBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="IceComBaseModel.ProductPurchase" Role="ProductPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductPurchase">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShopSale_Shop">
+          <End Type="IceComBaseModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="IceComBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShopSale_User">
           <End Type="IceComBaseModel.User" Role="User" Multiplicity="1" />
           <End Type="IceComBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
           <ReferentialConstraint>
@@ -646,30 +670,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShopSale_Shop">
-          <End Type="IceComBaseModel.Shop" Role="Shop" Multiplicity="1" />
-          <End Type="IceComBaseModel.ShopSale" Role="ShopSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ShopSale">
-              <PropertyRef Name="ShopID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShopSale_User">
-          <End Type="IceComBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="IceComBaseModel.ShopSale" Role="ShopSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ShopSale">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -716,10 +716,21 @@
           <EntitySetMapping Name="ProductHistories">
             <EntityTypeMapping TypeName="IceComBaseModel.ProductHistory">
               <MappingFragment StoreEntitySet="ProductHistory">
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPurchases">
+            <EntityTypeMapping TypeName="IceComBaseModel.ProductPurchase">
+              <MappingFragment StoreEntitySet="ProductPurchase">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -728,9 +739,10 @@
             <EntityTypeMapping TypeName="IceComBaseModel.ProductSale">
               <MappingFragment StoreEntitySet="ProductSale">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -757,18 +769,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="INN" ColumnName="INN" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ShopSales">
-            <EntityTypeMapping TypeName="IceComBaseModel.ShopSale">
-              <MappingFragment StoreEntitySet="ShopSale">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

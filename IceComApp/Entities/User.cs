@@ -17,8 +17,8 @@ namespace IceComApp.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.ProductPurchases = new HashSet<ProductPurchase>();
             this.ProductSales = new HashSet<ProductSale>();
-            this.ShopSales = new HashSet<ShopSale>();
         }
     
         public int ID { get; set; }
@@ -32,9 +32,9 @@ namespace IceComApp.Entities
         public byte[] Picture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductPurchase> ProductPurchases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSale> ProductSales { get; set; }
         public virtual Role Role { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShopSale> ShopSales { get; set; }
     }
 }

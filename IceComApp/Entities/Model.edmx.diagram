@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dd722bdb4bb04ce7ab0cdda8405ca461" Name="Diagram1">
+      <Diagram DiagramId="dd722bdb4bb04ce7ab0cdda8405ca461" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="IceComBaseModel.Company" Width="1.5" PointX="3" PointY="4.625" />
         <EntityTypeShape EntityType="IceComBaseModel.CompanyType" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="IceComBaseModel.Product" Width="1.5" PointX="5.25" PointY="4.125" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductHistory" Width="1.5" PointX="7.5" PointY="0.75" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductSale" Width="1.5" PointX="7.5" PointY="4.75" />
-        <EntityTypeShape EntityType="IceComBaseModel.ProductType" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="IceComBaseModel.Role" Width="1.5" PointX="3" PointY="12.125" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductHistory" Width="1.5" PointX="7.5" PointY="4.75" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductPurchase" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductSale" Width="1.5" PointX="10.5" PointY="4.5" />
+        <EntityTypeShape EntityType="IceComBaseModel.ProductType" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="IceComBaseModel.Role" Width="1.5" PointX="3" PointY="11.875" />
         <EntityTypeShape EntityType="IceComBaseModel.Shop" Width="1.5" PointX="8.25" PointY="8" />
-        <EntityTypeShape EntityType="IceComBaseModel.ShopSale" Width="1.5" PointX="10.5" PointY="4.5" />
-        <EntityTypeShape EntityType="IceComBaseModel.Unit" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="IceComBaseModel.User" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="IceComBaseModel.Unit" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="IceComBaseModel.User" Width="1.5" PointX="5.25" PointY="11" />
         <EntityTypeShape EntityType="IceComBaseModel.Warehouse" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="IceComBaseModel.FK_Company_CompanyType" />
         <AssociationConnector Association="IceComBaseModel.FK_Product_Company" />
@@ -26,9 +26,9 @@
         <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Product" />
         <AssociationConnector Association="IceComBaseModel.FK_ProductHistory_Warehouse" />
         <AssociationConnector Association="IceComBaseModel.FK_ProductSale_User" />
-        <AssociationConnector Association="IceComBaseModel.FK_User_Role" />
         <AssociationConnector Association="IceComBaseModel.FK_ShopSale_Shop" />
         <AssociationConnector Association="IceComBaseModel.FK_ShopSale_User" />
+        <AssociationConnector Association="IceComBaseModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,12 +15,14 @@ namespace IceComApp.Entities
     public partial class ProductSale
     {
         public int ID { get; set; }
-        public System.DateTime Date { get; set; }
+        public System.DateTime Datetime { get; set; }
         public int ProductID { get; set; }
         public double Amount { get; set; }
+        public int ShopID { get; set; }
         public int UserID { get; set; }
     
         public virtual Product Product { get; set; }
+        public virtual Shop Shop { get; set; }
         public virtual User User { get; set; }
     }
 }

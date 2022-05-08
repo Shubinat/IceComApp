@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IceComApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,17 +65,24 @@ namespace IceComApp.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ProductEditorPage());
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ProductEditorPage(LViewProducts.SelectedItem as Product));
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Вы действительно хотите удалить эту продукцию?", "Сообщение", MessageBoxButton.YesNo, MessageBoxImage.Question)
+               == MessageBoxResult.Yes)
+            {
+                var currProduct = LViewProducts.SelectedItem as Product;
+                App.Context.Products.Remove(currProduct);
+                App.Context.SaveChanges();
+                UpdateList();
+            }
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)

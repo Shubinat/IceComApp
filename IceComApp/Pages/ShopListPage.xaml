@@ -17,11 +17,11 @@
 
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="Поиск:" Margin="5"/>
+            <TextBlock Text="Поиск:" Margin="5" VerticalAlignment="Center"/>
             <TextBox Width="170" x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Text="Сортировка:" Margin="5"/>
+            <TextBlock Text="Сортировка:" Margin="5" VerticalAlignment="Center"/>
             <ComboBox Width="170" Style="{StaticResource CuteComboBox}" VerticalAlignment="Center" x:Name="CBoxSort" SelectionChanged="CBoxSort_SelectionChanged"/>
         </StackPanel>
 
