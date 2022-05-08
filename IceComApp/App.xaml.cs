@@ -1,4 +1,5 @@
 ﻿using IceComApp.Properties;
+using IceComApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,5 +17,16 @@ namespace IceComApp
     {
         public static Entities.IceComBaseEntities Context { get; } = new Entities.IceComBaseEntities();
         public static Entities.User AuthUser => Context.Users.ToList().FirstOrDefault(x => x.ID == Settings.Default.UserId);
+
+        public App()
+        {
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+        }
+
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            Message.ShowError("Произошла непридвиденная ошибка");
+        }
     }
 }
