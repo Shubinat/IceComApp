@@ -79,7 +79,7 @@ namespace IceComApp.Pages
 
         private void BtnStatistics_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ProductStatisticsPage());
         }
     }
 }
