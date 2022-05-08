@@ -84,7 +84,7 @@ namespace IceComApp.Pages
 
         private void BtnAddSale_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddProductSalePage());
         }
     }
 }

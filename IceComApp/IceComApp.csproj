@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddProductSalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +187,9 @@
     </Compile>
     <Compile Include="Pages\AddProductPurchasePage.xaml.cs">
       <DependentUpon>AddProductPurchasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddProductSalePage.xaml.cs">
+      <DependentUpon>AddProductSalePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
