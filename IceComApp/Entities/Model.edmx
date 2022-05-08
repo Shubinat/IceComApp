@@ -13,7 +13,6 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="INN" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="CompanyTypeID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="CompanyType">
@@ -441,7 +440,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="INN" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="CompanyTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CompanyType" Relationship="IceComBaseModel.FK_Company_CompanyType" FromRole="Company" ToRole="CompanyType" />
           <NavigationProperty Name="Products" Relationship="IceComBaseModel.FK_Product_Company" FromRole="Company" ToRole="Product" />
@@ -755,7 +753,6 @@
             <EntityTypeMapping TypeName="IceComBaseModel.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
                 <ScalarProperty Name="INN" ColumnName="INN" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

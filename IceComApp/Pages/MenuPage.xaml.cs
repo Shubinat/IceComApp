@@ -60,7 +60,7 @@ namespace IceComApp.Pages
         }
         private void BtnCompanies_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new CompanyListPage());
         }
 
         private void BtnProductSales_Click(object sender, RoutedEventArgs e)

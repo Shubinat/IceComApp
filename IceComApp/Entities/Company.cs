@@ -24,7 +24,6 @@ namespace IceComApp.Entities
         public string Name { get; set; }
         public string INN { get; set; }
         public int CompanyTypeID { get; set; }
-        public string Description { get; set; }
         public string Address { get; set; }
     
         public virtual CompanyType CompanyType { get; set; }

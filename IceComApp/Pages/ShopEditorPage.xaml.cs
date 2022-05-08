@@ -63,8 +63,6 @@ namespace IceComApp.Pages
             {
                 Message.ShowError(err);
             }
-
-
         }
     }
 }
