@@ -44,28 +44,30 @@
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
-          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductPurchase">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSale">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="ShopID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -191,6 +193,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductPurchase_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductPurchase">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductSale_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductPurchase" Type="Self.ProductPurchase" Multiplicity="*" />
@@ -212,6 +226,18 @@
             </Principal>
             <Dependent Role="ProductPurchase">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSale_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -300,6 +326,10 @@
             <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="ProductHistory" EntitySet="ProductHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductPurchase_Warehouse" Association="Self.FK_ProductPurchase_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductSale_Product" Association="Self.FK_ProductSale_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPurchase" EntitySet="ProductPurchase" />
@@ -307,6 +337,10 @@
           <AssociationSet Name="FK_ProductSale_User" Association="Self.FK_ProductSale_User">
             <End Role="User" EntitySet="User" />
             <End Role="ProductPurchase" EntitySet="ProductPurchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Warehouse" Association="Self.FK_ProductSale_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_Product" Association="Self.FK_ShopSale_Product">
             <End Role="Product" EntitySet="Product" />
@@ -374,9 +408,17 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="ProductHistory" EntitySet="ProductHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductPurchase_Warehouse" Association="IceComBaseModel.FK_ProductPurchase_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ProductPurchase" EntitySet="ProductPurchases" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductSale_User" Association="IceComBaseModel.FK_ProductSale_User">
             <End Role="User" EntitySet="Users" />
             <End Role="ProductPurchase" EntitySet="ProductPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Warehouse" Association="IceComBaseModel.FK_ProductSale_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ProductSale" EntitySet="ProductSales" />
           </AssociationSet>
           <AssociationSet Name="FK_ShopSale_Shop" Association="IceComBaseModel.FK_ShopSale_Shop">
             <End Role="Shop" EntitySet="Shops" />
@@ -439,7 +481,7 @@
           <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ProductHistory_Product" FromRole="ProductHistory" ToRole="Product" />
           <NavigationProperty Name="Warehouse" Relationship="IceComBaseModel.FK_ProductHistory_Warehouse" FromRole="ProductHistory" ToRole="Warehouse" />
         </EntityType>
@@ -448,11 +490,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ProductSale_Product" FromRole="ProductPurchase" ToRole="Product" />
+          <NavigationProperty Name="Warehouse" Relationship="IceComBaseModel.FK_ProductPurchase_Warehouse" FromRole="ProductPurchase" ToRole="Warehouse" />
           <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ProductSale_User" FromRole="ProductPurchase" ToRole="User" />
         </EntityType>
         <EntityType Name="ProductSale">
@@ -460,12 +504,14 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="ShopID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="IceComBaseModel.FK_ShopSale_Product" FromRole="ProductSale" ToRole="Product" />
+          <NavigationProperty Name="Warehouse" Relationship="IceComBaseModel.FK_ProductSale_Warehouse" FromRole="ProductSale" ToRole="Warehouse" />
           <NavigationProperty Name="Shop" Relationship="IceComBaseModel.FK_ShopSale_Shop" FromRole="ProductSale" ToRole="Shop" />
           <NavigationProperty Name="User" Relationship="IceComBaseModel.FK_ShopSale_User" FromRole="ProductSale" ToRole="User" />
         </EntityType>
@@ -528,6 +574,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductHistories" Relationship="IceComBaseModel.FK_ProductHistory_Warehouse" FromRole="Warehouse" ToRole="ProductHistory" />
+          <NavigationProperty Name="ProductPurchases" Relationship="IceComBaseModel.FK_ProductPurchase_Warehouse" FromRole="Warehouse" ToRole="ProductPurchase" />
+          <NavigationProperty Name="ProductSales" Relationship="IceComBaseModel.FK_ProductSale_Warehouse" FromRole="Warehouse" ToRole="ProductSale" />
         </EntityType>
         <Association Name="FK_Company_CompanyType">
           <End Type="IceComBaseModel.CompanyType" Role="CompanyType" Multiplicity="1" />
@@ -625,6 +673,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductPurchase_Warehouse">
+          <End Type="IceComBaseModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="IceComBaseModel.ProductPurchase" Role="ProductPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductPurchase">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductSale_User">
           <End Type="IceComBaseModel.User" Role="User" Multiplicity="1" />
           <End Type="IceComBaseModel.ProductPurchase" Role="ProductPurchase" Multiplicity="*" />
@@ -634,6 +694,18 @@
             </Principal>
             <Dependent Role="ProductPurchase">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSale_Warehouse">
+          <End Type="IceComBaseModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="IceComBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -716,7 +788,7 @@
           <EntitySetMapping Name="ProductHistories">
             <EntityTypeMapping TypeName="IceComBaseModel.ProductHistory">
               <MappingFragment StoreEntitySet="ProductHistory">
-                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
@@ -727,10 +799,11 @@
           <EntitySetMapping Name="ProductPurchases">
             <EntityTypeMapping TypeName="IceComBaseModel.ProductPurchase">
               <MappingFragment StoreEntitySet="ProductPurchase">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -738,11 +811,12 @@
           <EntitySetMapping Name="ProductSales">
             <EntityTypeMapping TypeName="IceComBaseModel.ProductSale">
               <MappingFragment StoreEntitySet="ProductSale">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

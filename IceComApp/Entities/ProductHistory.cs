@@ -18,7 +18,7 @@ namespace IceComApp.Entities
         public int WarehouseID { get; set; }
         public int ProductID { get; set; }
         public double Amount { get; set; }
-        public System.DateTime Datetime { get; set; }
+        public System.DateTime DateTime { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Warehouse Warehouse { get; set; }

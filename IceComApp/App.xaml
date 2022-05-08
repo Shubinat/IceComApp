@@ -479,5 +479,25 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
+        <Style TargetType="DataGrid">
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Background" Value="{StaticResource ColorSecondControl}"/>
+            <Setter Property="GridLinesVisibility" Value="Vertical" />
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Foreground" Value="{StaticResource ColorMain}"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

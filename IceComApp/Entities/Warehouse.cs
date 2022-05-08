@@ -18,6 +18,8 @@ namespace IceComApp.Entities
         public Warehouse()
         {
             this.ProductHistories = new HashSet<ProductHistory>();
+            this.ProductPurchases = new HashSet<ProductPurchase>();
+            this.ProductSales = new HashSet<ProductSale>();
         }
     
         public int ID { get; set; }
@@ -25,5 +27,9 @@ namespace IceComApp.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductHistory> ProductHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductPurchase> ProductPurchases { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductSale> ProductSales { get; set; }
     }
 }
