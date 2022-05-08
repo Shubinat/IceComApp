@@ -10,9 +10,10 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Style="{StaticResource TBlockHeader}" Text="Выбор действия"/>
+            <TextBlock Style="{StaticResource TBlockHeader}" Text="Выбор действия" x:Name="TBlockTitle"/>
             <Button Content="Список продукции" x:Name="BtnProducts" Click="BtnProducts_Click"/>
             <Button Content="Список магазинов" x:Name="BtnShops" Click="BtnShops_Click"/>
+            <Button Content="Информация по складам" x:Name="BtnWarehouses" Click="BtnWarehouses_Click"/>
             <Button Content="Список продаж" x:Name="BtnProductSales" Click="BtnProductSales_Click"/>
             <Button Content="Список закупок" x:Name="BtnProductPurchases" Click="BtnProductPurchases_Click"/>
             <Button Content="Список производителей" x:Name="BtnCompanies" Click="BtnCompanies_Click"/>

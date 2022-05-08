@@ -124,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\WarehousesHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -223,6 +227,9 @@
     </Compile>
     <Compile Include="Pages\ShopListPage.xaml.cs">
       <DependentUpon>ShopListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WarehousesHistoryPage.xaml.cs">
+      <DependentUpon>WarehousesHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\ExcelWriter.cs" />
     <Compile Include="Utils\Message.cs" />

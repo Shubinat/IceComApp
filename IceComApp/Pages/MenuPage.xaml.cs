@@ -29,22 +29,31 @@ namespace IceComApp.Pages
             BtnProductSales.Visibility = Visibility.Collapsed;
             BtnProductPurchases.Visibility = Visibility.Collapsed;
             BtnCompanies.Visibility = Visibility.Collapsed;
-
+            BtnWarehouses.Visibility = Visibility.Collapsed;
             switch (App.AuthUser.RoleID)
             {
                 case 1:
                     BtnProducts.Visibility = Visibility.Visible;
                     BtnShops.Visibility = Visibility.Visible;
                     BtnProductSales.Visibility = Visibility.Visible;
+                    BtnWarehouses.Visibility = Visibility.Visible;
                     break;
                 case 2:
                     BtnProducts.Visibility = Visibility.Visible;
                     BtnProductPurchases.Visibility= Visibility.Visible;
                     BtnCompanies.Visibility= Visibility.Visible;
+                    BtnWarehouses.Visibility = Visibility.Visible;
                     break;
                 case 3:
+                    BtnProducts.Visibility = Visibility.Visible;
+                    BtnShops.Visibility = Visibility.Visible;
+                    BtnProductSales.Visibility = Visibility.Visible;
+                    BtnProductPurchases.Visibility = Visibility.Visible;
+                    BtnCompanies.Visibility = Visibility.Visible;
+                    BtnWarehouses.Visibility = Visibility.Visible;
                     break;
                 default:
+                    TBlockTitle.Text = "Для данной роли не предусмотрен функционал";
                     break;
             }
         }
@@ -71,6 +80,11 @@ namespace IceComApp.Pages
         private void BtnProductPurchases_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ProductPurchasesPage());
+        }
+
+        private void BtnWarehouses_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new WarehousesHistoryPage());
         }
     }
 }
