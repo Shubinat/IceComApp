@@ -26,6 +26,7 @@ namespace IceComApp.Entities
         }
     
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<CompanyType> CompanyTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductHistory> ProductHistories { get; set; }
         public virtual DbSet<ProductSale> ProductSales { get; set; }

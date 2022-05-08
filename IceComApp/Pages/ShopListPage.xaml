@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:IceComApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Список магазинов">
+      Title="Список магазинов" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,14 +18,14 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Text="Поиск:" Margin="5"/>
-            <TextBox Width="170"/>
+            <TextBox Width="170" x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Text="Сортировка:" Margin="5"/>
-            <ComboBox Width="170" Style="{StaticResource CuteComboBox}"/>
+            <ComboBox Width="170" Style="{StaticResource CuteComboBox}" VerticalAlignment="Center" x:Name="CBoxSort" SelectionChanged="CBoxSort_SelectionChanged"/>
         </StackPanel>
 
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Background="{StaticResource ColorSecondControl}" Margin="5" x:Name="LViewShops">
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Background="{StaticResource ColorSecondControl}" Margin="5" x:Name="LViewShops" SelectionChanged="LViewShops_SelectionChanged" SelectionMode="Single">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"/>
@@ -49,10 +49,10 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="Удалить" x:Name="BtnDelete"/>
-            <Button Content="Редактировать" x:Name="BtnEdit"/>
-            <Button Content="Добавить" x:Name="BtnAdd"/>
-            <Button Content="Информация о продажах" x:Name="BtnSales"/>
+            <Button Content="Удалить" x:Name="BtnDelete" Width="150" IsEnabled="False" Click="BtnDelete_Click"/>
+            <Button Content="Редактировать" x:Name="BtnEdit" Width="150" IsEnabled="False" Click="BtnEdit_Click"/>
+            <Button Content="Добавить" x:Name="BtnAdd" Width="150" Click="BtnAdd_Click"/>
+            
         </StackPanel>
     </Grid>
 

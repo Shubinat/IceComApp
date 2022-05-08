@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource TBlockHeader}" Text="Выбор действия"/>
-            <Button Content="Список продуктов" x:Name="BtnProducts" Click="BtnProducts_Click"/>
+            <Button Content="Список продукции" x:Name="BtnProducts" Click="BtnProducts_Click"/>
             <Button Content="Список магазинов" x:Name="BtnShops" Click="BtnShops_Click"/>
             <Button Content="Список продаж" x:Name="BtnShopSales" Click="BtnShopSales_Click"/>
         </StackPanel>

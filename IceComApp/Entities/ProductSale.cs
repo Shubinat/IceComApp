@@ -18,10 +18,8 @@ namespace IceComApp.Entities
         public System.DateTime Date { get; set; }
         public int ProductID { get; set; }
         public double Amount { get; set; }
-        public int CompanyID { get; set; }
         public int UserID { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual Product Product { get; set; }
         public virtual User User { get; set; }
     }

@@ -12,23 +12,18 @@ namespace IceComApp.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Company
+    public partial class CompanyType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Company()
+        public CompanyType()
         {
-            this.Products = new HashSet<Product>();
+            this.Companies = new HashSet<Company>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
-        public string INN { get; set; }
-        public int CompanyTypeID { get; set; }
-        public string Description { get; set; }
-        public string Address { get; set; }
     
-        public virtual CompanyType CompanyType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }

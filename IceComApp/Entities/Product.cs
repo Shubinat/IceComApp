@@ -29,6 +29,7 @@ namespace IceComApp.Entities
         public int ProductTypeID { get; set; }
         public byte[] Picture { get; set; }
     
+        public virtual Company Company { get; set; }
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductHistory> ProductHistories { get; set; }
