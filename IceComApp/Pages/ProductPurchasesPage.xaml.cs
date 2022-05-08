@@ -76,7 +76,7 @@ namespace IceComApp.Pages
 
         private void BtnAddPurchase_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddProductPurchasePage());
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
